@@ -1,6 +1,6 @@
 # ==============================================================================     
-#  HW3: function to call the RGB colomap data from http://geography.uoregon.edu, 
-#       and return the number of color (leng) & a colormap dictionary (cdict) 
+#  HW3: 1) script to make a plan-view plot using Basemap from the netCDF file
+#       2) script to make a timeseires using pandas from the netCDF file
 # ==============================================================================     
 #  by InOk Jun
 #  OCNG 658, Fall 2013
@@ -15,14 +15,12 @@ from datetime import date, timedelta
 from mpl_toolkits.basemap import Basemap
 
 
-# import netCDF file 
-nc_1 = netCDF4.Dataset('Korea_temp.nc')
-nc_2 = netCDF4.Dataset('Korea_temp_dt.nc')
-
-
 #-------------------------------------------------------------------------------
 # 1) Make a plan-view in lat-lon using Basemap
 #-------------------------------------------------------------------------------
+# import netCDF file 
+nc_1 = netCDF4.Dataset('Korea_temp.nc')
+
 # get the lon-lat-temp data in netCDF (nc_1)
 lon   = nc_1.variables['LON'][:]
 lat   = nc_1.variables['LAT'][:]
@@ -58,6 +56,9 @@ plt.savefig('HW3_by_Jun_netCDF.png', dpi = 600)
 #-------------------------------------------------------------------------------
 # 2) Make timeseires using Pandas
 #-------------------------------------------------------------------------------
+# import netCDF file 
+nc_2 = netCDF4.Dataset('Korea_temp_dt.nc')
+
 # get the temp-time data in netCDF (nc_2)
 temp = nc_2.variables['TEMP'][:]
 time = nc_2.variables['TIME'][:]
